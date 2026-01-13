@@ -10,7 +10,7 @@ export interface ListingItem {
   currency_code: string;
   price: string;
   quantity: number;
-  state?: string;
+  state: string;
 }
 
 export interface ListingProps {

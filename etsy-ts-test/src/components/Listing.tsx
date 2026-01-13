@@ -1,18 +1,8 @@
 import React from 'react';
+import type { ListingItem } from '../types';
 
 interface ListingProps {
-  items: Array<{
-    listing_id: number;
-    url?: string;
-    MainImage?: {
-      url_570xN: string;
-    };
-    title: string;
-    currency_code: string;
-    price: string;
-    quantity: number;
-    state: string;
-  }>;
+  items: ListingItem[];
 }
 
 const Listing: React.FC<ListingProps> = ({ items = [] }) => {
@@ -50,24 +40,18 @@ const Listing: React.FC<ListingProps> = ({ items = [] }) => {
     return `${quantity} left`;
   };
 
-  // только активные товары
-  const activeItems = items.filter(item => item.state === 'active');
-
-  if (activeItems.length === 0) {
+  if (items.length === 0) {
     return <div>No active listings found</div>;
   }
 
   return (
     <div className="product-grid">
-      {activeItems.map((item) => (
+      {items.map((item) => (
         <div key={item.listing_id} className="product-card">
           <img 
-            src={item.MainImage?.url_570xN}
+            src={item.MainImage.url_570xN}
             alt={item.title} 
             className="product-image"
-            onError={(e) => {
-              (e.target as HTMLImageElement).src = 'https://via.placeholder.com/570x570?text=No+Image';
-            }}
           />
           <div className="product-info">
             <h3 className="product-title">{formatTitle(item.title)}</h3>
