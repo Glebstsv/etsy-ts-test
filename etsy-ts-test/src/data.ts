@@ -1,5 +1,4 @@
 export const data = [
-    [
   {
     "listing_id": 708099714,
     "state": "active",
@@ -2330,5 +2329,4 @@ export const data = [
       "full_width": null
     }
   }
-]
 ]
